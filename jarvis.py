@@ -37,8 +37,7 @@ def speaking():
         print("You said ", r.recognize_google(audio))
         my_string = r.recognize_google(audio).lower()
         if my_string.startswith("firefox find"):
-            fp = webdriver.FirefoxProfile('/home/desktop/.mozilla/firefox/rj3dpw3e.default-release')
-            driver = webdriver.Firefox(fp)
+            driver = webdriver.Firefox()
             driver.maximize_window()
             driver.get("https://duckduckgo.com")
             search_results = driver.find_element_by_xpath("//input[@id = 'search_form_input_homepage']")
@@ -46,7 +45,7 @@ def speaking():
             search_results.send_keys(string_to_find)
             search_results.submit()
         if my_string == "stop firefox" or my_string == "close firefox":
-            os.system("bash -c 'killall firefox'")
+            os.system("bash -c 'killall MainThread'")
         if my_string == "top":
             os.system("top")
         if my_string in bye_vars:
